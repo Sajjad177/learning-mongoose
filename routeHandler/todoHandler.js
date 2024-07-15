@@ -21,13 +21,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get all todo and control field which one you can show 
+// get all todo and control field which one you can show
 router.get("/field", async (req, res) => {
   try {
-    const result = await Todo.find({ status: "active" }).select({
-      _id: 0,
-      date: 0
-    }).limit(2).exec();
+    const result = await Todo.find({ status: "active" })
+      .select({
+        _id: 0,
+        date: 0,
+      })
+      .limit(2)
+      .exec();
     //.limit() you can control how many data you show
 
     res.status(200).json({
@@ -40,7 +43,6 @@ router.get("/field", async (req, res) => {
     });
   }
 });
-
 
 // Get all todo data
 router.get("/data", async (req, res) => {
@@ -59,17 +61,17 @@ router.get("/data", async (req, res) => {
 
 // Get A todo by ID
 router.get("/:id", async (req, res) => {
-    try {
-      const result = await Todo.findById({_id : req.params.id})
-      res.status(200).json({
-        message: "get a data successfully",
-        result,
-      });
-    }catch(err){
-      res.status(500).json({
-        error: "There was a server side error",
-      });
-    }
+  try {
+    const result = await Todo.findById({ _id: req.params.id });
+    res.status(200).json({
+      message: "get a data successfully",
+      result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "There was a server side error",
+    });
+  }
 });
 
 // post A todo
@@ -130,12 +132,12 @@ router.put("/:id", async (req, res) => {
 // Deleted todo
 router.delete("/:id", async (req, res) => {
   try {
-    const result = await Todo.deleteOne({_id : req.params.id})
+    const result = await Todo.deleteOne({ _id: req.params.id });
     res.status(200).json({
       message: "data deleted successfully",
       result,
     });
-  }catch(err){
+  } catch (err) {
     res.status(500).json({
       error: "There was a server side error",
     });
@@ -143,3 +145,8 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+
+var a = 4
+a = 7
+console.log(a) 
